@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(libraw VERSION 0.18.0 LANGUAGES CXX)
+project(raw VERSION 0.18.0 LANGUAGES CXX)
 
 if(MSVC)
   set(CMAKE_DEBUG_POSTFIX d)
 endif()
 
-add_library(libraw
+add_library(raw
   ${CMAKE_CURRENT_SOURCE_DIR}/src/libraw_c_api.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/libraw_cxx.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/libraw_datastream.cpp
@@ -22,7 +22,7 @@ add_library(libraw
   ${CMAKE_CURRENT_SOURCE_DIR}/internal/demosaic_packs.cpp
 )
 
-target_include_directories(libraw
+target_include_directories(raw
   PRIVATE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/libraw>
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
@@ -32,7 +32,7 @@ target_include_directories(libraw
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/libraw>
 )
 
-target_compile_definitions(libraw
+target_compile_definitions(raw
   PRIVATE
   _CRT_SECURE_NO_WARNINGS
   _CRT_STDC_NO_DEPRECATE
@@ -51,7 +51,7 @@ write_basic_package_version_file(
   COMPATIBILITY AnyNewerVersion
 )
 
-install(TARGETS libraw EXPORT libraw
+install(TARGETS raw EXPORT raw
   RUNTIME DESTINATION bin
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
@@ -62,7 +62,7 @@ install(DIRECTORY
   DESTINATION include
 )
 
-install(EXPORT libraw
+install(EXPORT raw
   FILE
   ${PROJECT_NAME}.cmake
   NAMESPACE
@@ -78,7 +78,7 @@ install(FILES
     lib/cmake/${PROJECT_NAME}
 )
 
-export(TARGETS libraw
+export(TARGETS raw
   FILE
   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config.cmake
   NAMESPACE ${PROJECT_NAME}::
